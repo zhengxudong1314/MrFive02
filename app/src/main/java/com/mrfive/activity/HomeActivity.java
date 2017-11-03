@@ -1,5 +1,6 @@
 package com.mrfive.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -166,7 +167,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
 
             case R.id.myHead:
-
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
             case R.id.biji:
 
