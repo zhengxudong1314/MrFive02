@@ -14,10 +14,6 @@ public interface LoginContract {
 
         void onPasswordError();
 
-        void onPhoneError();
-
-        void onSexError();
-
         void onFailure();
 
         void onSuccess();
