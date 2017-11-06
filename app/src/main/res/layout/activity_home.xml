@@ -21,7 +21,8 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <com.defferentimageview.DefferentImageView
+            <com.facebook.drawee.view.SimpleDraweeView
+                app:roundAsCircle="true"
                 android:id="@+id/titleHead"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -76,7 +77,8 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <com.defferentimageview.DefferentImageView
+                <com.facebook.drawee.view.SimpleDraweeView
+                    app:roundAsCircle="true"
                     android:id="@+id/myHead"
                     android:layout_width="60dp"
                     android:layout_height="60dp"

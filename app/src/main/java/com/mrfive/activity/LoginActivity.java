@@ -11,7 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mrfive.R;
+import com.mrfive.bean.LoginBean;
 import com.mrfive.contract.LoginContract;
+import com.mrfive.presenter.LoginPresenter;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener,LoginContract.View {
 
@@ -22,11 +24,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private android.widget.EditText password;
     private android.widget.Button login;
     private android.widget.TextView forget;
+    private LoginPresenter loginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        initView();
+        loginPresenter = new LoginPresenter(this);
+    }
+
+    private void initView() {
         this.forget = (TextView) findViewById(R.id.forget);
         this.login = (Button) findViewById(R.id.login);
         this.password = (EditText) findViewById(R.id.password);
@@ -50,7 +58,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(this, RegActivity.class));
                 break;
             case R.id.login:
+                String phone1 = phone.getText().toString();
+                String pwd = password.getText().toString();
 
+                loginPresenter.connectP(this,phone1,pwd);
                 break;
             case R.id.forget:
 
@@ -60,12 +71,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onNameError() {
-        phone.setError("用户名不能为空");
+        phone.setError("请输入正确的手机号码");
     }
 
     @Override
     public void onPasswordError() {
-        password.setError("密码不能为空");
+        password.setError("密码不能小于6位");
     }
 
     @Override
@@ -74,7 +85,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public void onSuccess() {
+    public void onSuccess(LoginBean loginBean) {
         Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
     }
+
+
 }

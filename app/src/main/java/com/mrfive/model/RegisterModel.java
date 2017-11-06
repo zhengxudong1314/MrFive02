@@ -3,9 +3,9 @@ package com.mrfive.model;
 import android.content.Context;
 
 import com.mrfive.bean.LoginBean;
-import com.mrfive.contract.LoginContract;
+import com.mrfive.contract.RegisterContract;
 import com.mrfive.net.RetrofitService;
-import com.mrfive.presenter.LoginPresenter;
+import com.mrfive.presenter.RegisterPresenter;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -21,15 +21,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by lenovo on 2017/11/3.
  */
 
-public class LoginModel implements LoginContract.Model {
-    private LoginPresenter loginPresenter;
+public class RegisterModel implements RegisterContract.Model {
+    private RegisterPresenter registerPresenter;
     private String url = "http://120.27.23.105/";
 
-    public LoginModel(LoginPresenter loginPresenter) {
-        this.loginPresenter = loginPresenter;
+    public RegisterModel(RegisterPresenter registerPresenter) {
+        this.registerPresenter = registerPresenter;
     }
-
-
     @Override
     public void connectP(Context context, final String phone, final String password) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -41,7 +39,7 @@ public class LoginModel implements LoginContract.Model {
                 .build();
         //动态代理获取retrofitService
         RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        Flowable<LoginBean> flowable = retrofitService.loginPost(phone, password);
+        Flowable<LoginBean> flowable = retrofitService.regPost(phone, password);
         //异步
         flowable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -54,9 +52,9 @@ public class LoginModel implements LoginContract.Model {
                     @Override
                     public void onNext(LoginBean loginBean) {
                         if (loginBean.getCode().equals("0")) {
-                            loginPresenter.sendData(loginBean, phone, password);
+                            registerPresenter.sendData(loginBean, phone, password);
                         }else {
-                            loginPresenter.sendData(null, phone, password);
+                            registerPresenter.sendData(null, phone, password);
                         }
                     }
 

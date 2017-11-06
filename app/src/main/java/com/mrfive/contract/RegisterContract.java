@@ -8,9 +8,9 @@ import com.mrfive.bean.LoginBean;
  * Created by lenovo on 2017/11/3.
  */
 
-public interface LoginContract {
+public interface RegisterContract {
     interface Model {
-        void connectP(Context context,String phone,String password);
+        void connectP(Context context, String phone, String password);
     }
 
     interface View {

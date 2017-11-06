@@ -17,7 +17,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.defferentimageview.DefferentImageView;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.hjm.bottomtabbar.BottomTabBar;
 import com.mrfive.R;
 import com.mrfive.fragment.DuanZiFragment;
@@ -31,11 +31,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private com.hjm.bottomtabbar.BottomTabBar btb;
     private android.widget.TextView titleText;
-    private com.defferentimageview.DefferentImageView titleHead;
+    private SimpleDraweeView titleHead;
     private android.widget.ImageView biji;
     private android.widget.LinearLayout titlelayout;
     private android.widget.RelativeLayout mainLayout;
-    private DefferentImageView myHead;
+    private SimpleDraweeView myHead;
     private TextView nickName;
     private ImageView sex;
     private android.widget.ListView lv;
@@ -51,7 +51,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         initData();
         botomBar();
-
+        myHead.setImageURI("res://com.mrfive/"+R.mipmap.girl04);
+        titleHead.setImageURI("res://com.mrfive/"+R.mipmap.girl04);
         ceHuaListView();
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -142,14 +143,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         this.lv = (ListView) findViewById(R.id.lv);
         this.sex = (ImageView) findViewById(R.id.sex);
         this.nickName = (TextView) findViewById(R.id.nickName);
-        this.myHead = (DefferentImageView) findViewById(R.id.myHead);
+        this.myHead = (SimpleDraweeView) findViewById(R.id.myHead);
         this.mainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
         this.btb = (BottomTabBar) findViewById(R.id.btb);
         this.titlelayout = (LinearLayout) findViewById(R.id.title_layout);
         this.biji = (ImageView) findViewById(R.id.biji);
         this.titleText = (TextView) findViewById(R.id.titleText);
-        this.titleHead = (DefferentImageView) findViewById(R.id.titleHead);
-        titleHead.setType(DefferentImageView.TYPE_CIRCLE);
+        this.titleHead = (SimpleDraweeView) findViewById(R.id.titleHead);
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

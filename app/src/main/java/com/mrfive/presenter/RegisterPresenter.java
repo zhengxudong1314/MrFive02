@@ -3,30 +3,30 @@ package com.mrfive.presenter;
 import android.content.Context;
 
 import com.mrfive.bean.LoginBean;
-import com.mrfive.contract.LoginContract;
-import com.mrfive.model.LoginModel;
+import com.mrfive.contract.RegisterContract;
+import com.mrfive.model.RegisterModel;
 
 /**
  * Created by lenovo on 2017/11/3.
  */
 
-public class LoginPresenter implements LoginContract.Presenter {
-    private LoginContract.View view;
-    private LoginModel loginModel;
+public class RegisterPresenter implements RegisterContract.Presenter {
+    private RegisterContract.View view;
+    private RegisterModel registerModel;
 
-    public LoginPresenter(LoginContract.View view) {
+    public RegisterPresenter(RegisterContract.View view) {
         this.view = view;
-        loginModel = new LoginModel(this);
+        registerModel = new RegisterModel(this);
     }
 
 
     @Override
     public void connectP(Context context, String phone, String password) {
 
-        loginModel.connectP(context,phone,password);
+        registerModel.connectP(context,phone,password);
     }
 
-    public void sendData(LoginBean loginBean,String phone,String password){
+    public void sendData(LoginBean loginBean, String phone, String password){
         if (phone.length()!=11){
             view.onNameError();
             return;
